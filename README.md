@@ -1,33 +1,41 @@
-# README
+# Morra cinese — FSMD
 
-## Architettura degli Elaboratori - Progetto Morra Cinese FSMD
+Elaborato del corso di Architettura degli Elaboratori, Università di Verona, 2023/2024.
 
-Benvenuto nella repository del progetto del corso di Architettura degli Elaboratori, svolto durante il corso di Informatica presso l'Università di Verona (UniVR). Questo progetto è incentrato sulla realizzazione di un sistema FSMD per il gioco della Morra Cinese. All'interno di questa repository, troverai i codici sorgenti scritti in linguaggio hardware Verilog e SiS (blif), insieme a tutti i moduli .blif relativi alla progettazione a gate level in SiS.
+Il gioco della morra cinese realizzato come FSMD, prima descritto in SystemVerilog e poi
+portato a livello di porte logiche in SiS. La relazione confronta la rete non ottimizzata
+con quella ottimizzata dopo il mapping.
 
-### Struttura della Repository
+## Struttura
 
-1. **`design.sv`**: Questo file contiene la descrizione in linguaggio hardware Verilog del sistema FSMD per il gioco della Morra Cinese.
+```
+SRC/
+├── verilog/     design.sv, testbench.sv e l'output della simulazione
+└── sis/         FSMD.blif, script di test e output SiS
+Relazione/       relazione LaTeX con schemi e confronto ottimizzato / non ottimizzato
+SIS2024.pdf      traccia del progetto
+```
 
-2. **`testbench.sv`**: Il testbench per la verifica del sistema FSMD.
+## Simulazione
 
-3. **Moduli `.blif`**: I moduli .blif relativi alla progettazione a gate level in SiS si trovano nella cartella `SRC/sis/non_ottimizzato`.
+Verilog, con Icarus:
 
-4. **Relazione**: Troverai la relazione in formato PDF all'interno della cartella `SRC`.
+```bash
+iverilog -o morra SRC/verilog/design.sv SRC/verilog/testbench.sv
+vvp morra
+```
 
-### Istruzioni per l'Esecuzione
+SiS, dalla shell del tool:
 
-1. Assicurati di avere un ambiente di sviluppo Verilog/SiS configurato.
+```
+source SRC/sis/testbench.script
+```
 
-2. Esegui il file `design.sv` per sintetizzare il sistema FSMD.
+## Autori
 
-3. Utilizza il file `testbench.sv` per eseguire test approfonditi e verificare il corretto funzionamento del sistema.
+Antonio Iovine e Tommi Bimbato.
 
-### Contatti e Collaborazioni
+## Licenza
 
-Per domande, suggerimenti o collaborazioni, sentiti libero di contattarci attraverso la sezione "Issues" della repository.
-
-### Copyright e Citazione
-
-Il codice sorgente e la documentazione all'interno di questa repository sono soggetti a copyright © [2024] [Tommi Bimbato, Antonio Iovine].
-
-È concesso il permesso di utilizzare, modificare e distribuire questo software a condizione che venga mantenuto il riferimento al proprietario originale della repository e che venga citata adeguatamente la fonte nei lavori derivati o nelle pubblicazioni accademiche.
+Il codice e la relazione restano di proprietà degli autori. L'uso, la modifica e la
+distribuzione sono consentiti citando la fonte.
